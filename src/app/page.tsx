@@ -1,18 +1,24 @@
-import { cn } from "@/lib/utils";
-import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
-import { UserProfile } from "./client";
-import { getQueryClient, trpc } from "@/trpc/server";
+import { cn } from '@/lib/utils';
+import { authClient } from '@/lib/auth-client';
+import { Button } from '@/components/ui/button';
+import { requireAuth } from '@/lib/auth-utils';
+import { caller } from '@/trpc/server';
 
+const Page = async () => {
+  await requireAuth();
 
-export default async function Home() {
-  const queryClient = getQueryClient();
-  void queryClient.prefetchQuery(trpc.getUsers.queryOptions());
+  const data = await caller.getUsers();
 
   return (
-    <div className={cn("flex flex-col items-center justify-center min-h-screen p-8 pb-20 gap-16 sm:p-20")}>
-      <HydrationBoundary state={dehydrate(queryClient)}>
-        <UserProfile />
-      </HydrationBoundary>
+    <div
+      className={cn(
+        'flex min-h-screen flex-col items-center justify-center gap-16 p-8 pb-20 sm:p-20',
+      )}
+    >
+      <div>private page</div>
+      <pre>{JSON.stringify(data)}</pre>
     </div>
   );
-}
+};
+
+export default Page;
