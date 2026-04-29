@@ -13,7 +13,7 @@ export const appRouter = createTRPCRouter({
       data: {
         email: "tam@gmail.com"
       }
-    }); 
+    })
 
 
     return prisma.workflow.create({
