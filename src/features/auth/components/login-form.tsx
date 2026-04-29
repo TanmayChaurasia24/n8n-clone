@@ -24,6 +24,7 @@ import {
 import Link from 'next/link';
 import { authClient } from '@/lib/auth-client';
 import { toast } from 'sonner';
+import Image from 'next/image';
 
 const LoginSchema = z.object({
   email: z.email('Please enter a valid email address.'),
@@ -71,8 +72,8 @@ export function LoginForm() {
   };
 
   return (
-    <div className="flex h-screen w-screen flex-col items-center justify-center gap-6">
-      <Card className="w-[40%]">
+    <div className="flex flex-col gap-6">
+      <Card className="">
         <CardHeader className="text-center">
           <CardTitle>Welcome Back</CardTitle>
           <CardDescription>Login to continue</CardDescription>
@@ -90,6 +91,12 @@ export function LoginForm() {
                     type="button"
                     disabled={isPending}
                   >
+                    <Image
+                      alt="github"
+                      src={'/github.svg'}
+                      width={20}
+                      height={20}
+                    />
                     Continue with github
                   </Button>
                   <Button
@@ -99,6 +106,12 @@ export function LoginForm() {
                     type="button"
                     disabled={isPending}
                   >
+                    <Image
+                      alt="google"
+                      src={'/google.svg'}
+                      width={20}
+                      height={20}
+                    />
                     Continue with google
                   </Button>
                 </div>

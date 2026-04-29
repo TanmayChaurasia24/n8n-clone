@@ -24,6 +24,7 @@ import {
 import Link from 'next/link';
 import { authClient } from '@/lib/auth-client';
 import { toast } from 'sonner';
+import Image from 'next/image';
 
 const RegisterSchema = z
   .object({
@@ -79,8 +80,8 @@ export function RegisterForm() {
   };
 
   return (
-    <div className="flex h-screen w-screen flex-col items-center justify-center gap-6">
-      <Card className="w-[40%]">
+    <div className="flex flex-col gap-6">
+      <Card className="">
         <CardHeader className="text-center">
           <CardTitle>Welcome</CardTitle>
           <CardDescription>Signup to continue</CardDescription>
@@ -98,6 +99,12 @@ export function RegisterForm() {
                     type="button"
                     disabled={isPending}
                   >
+                    <Image
+                      alt="github"
+                      src={'/github.svg'}
+                      width={20}
+                      height={20}
+                    />
                     Continue with github
                   </Button>
                   <Button
@@ -107,6 +114,12 @@ export function RegisterForm() {
                     type="button"
                     disabled={isPending}
                   >
+                    <Image
+                      alt="google"
+                      src={'/google.svg'}
+                      width={20}
+                      height={20}
+                    />
                     Continue with google
                   </Button>
                 </div>
