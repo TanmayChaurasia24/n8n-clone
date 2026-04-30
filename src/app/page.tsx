@@ -13,11 +13,16 @@ const Page = () => {
   const { data } = useQuery(trpc.getWorkflows.queryOptions());
   const router = useRouter();
 
-  const create = useMutation(trpc.createWorkflow.mutationOptions({
-    onSuccess: () => {
-      queryClient.invalidateQueries(trpc.getWorkflows.queryOptions())
-    }
-  }));
+  const create = useMutation(
+    trpc.createWorkflow.mutationOptions({
+      onSuccess: () => {
+        queryClient.invalidateQueries(trpc.getWorkflows.queryOptions());
+      },
+    }),
+  );
+
+  const testAi = useMutation(trpc.testAi.mutationOptions());
+
 
   return (
     <div
@@ -36,12 +41,16 @@ const Page = () => {
             fetchOptions: {
               onSuccess: () => {
                 router.push('/login');
-              }
-            }
+              },
+            },
           });
         }}
       >
         Log out
+      </Button>
+
+      <Button disabled={testAi.isPending} onClick={() => testAi.mutate()}>
+        Test AI
       </Button>
     </div>
   );

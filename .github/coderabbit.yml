@@ -9,7 +9,7 @@ limits:
   max_lines: 20000
 
 ignore:
-  - "dist/**"
-  - "build/**"
-  - "**/*.lock"
-  - "node_modules/**"
+  - 'dist/**'
+  - 'build/**'
+  - '**/*.lock'
+  - 'node_modules/**'
