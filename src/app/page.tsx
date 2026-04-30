@@ -1,4 +1,4 @@
-'use client';
+"use client"
 
 import { cn } from '@/lib/utils';
 import { useTRPC } from '@/trpc/client';
@@ -23,6 +23,7 @@ const Page = () => {
 
   const testAi = useMutation(trpc.testAi.mutationOptions());
 
+
   return (
     <div
       className={cn(
@@ -32,10 +33,7 @@ const Page = () => {
       <div>private page</div>
       <pre>{JSON.stringify(data)}</pre>
 
-      <Button disabled={create.isPending} onClick={() => create.mutate()}>
-        {' '}
-        create workflow{' '}
-      </Button>
+      <Button disabled={create.isPending} onClick={() => create.mutate()}> create workflow </Button>
 
       <Button
         onClick={async () => {
