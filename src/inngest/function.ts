@@ -11,6 +11,12 @@ export const executeAI = inngest.createFunction(
       model: google('gemini-2.5-flash'),
       system: 'you are a helpfull assistant',
       prompt: 'write a short story on akhbar and birbal',
+      experimental_telemetry: {
+        isEnabled: true,
+        functionId: "joke_agent",
+        recordInputs: true,
+        recordOutputs: true,
+      },
     });
 
     return steps;
