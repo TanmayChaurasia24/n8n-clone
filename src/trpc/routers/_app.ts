@@ -1,16 +1,14 @@
-import { inngest } from '@/inngest/client';
-import { baseProcedure, createTRPCRouter, protectedProcedure } from '../init';
-import prisma from '@/lib/db';
-import { google } from '@ai-sdk/google';
-import { generateText } from 'ai';
+import { inngest } from "@/inngest/client";
+import prisma from "@/lib/db";
+import { createTRPCRouter, protectedProcedure } from "../init";
 
 export const appRouter = createTRPCRouter({
   testAi: protectedProcedure.mutation(async () => {
     await inngest.send({
-      name: 'execute/ai',
+      name: "execute/ai",
     });
 
-    return { success: true, message: 'Job Queued...' };
+    return { success: true, message: "Job Queued..." };
   }),
 
   getWorkflows: protectedProcedure.query(({ ctx }) => {
@@ -19,20 +17,18 @@ export const appRouter = createTRPCRouter({
 
   createWorkflow: protectedProcedure.mutation(async () => {
     await inngest.send({
-      name: 'app/task.created',
+      name: "app/task.created",
       data: {
-        email: 'tam@gmail.com',
+        email: "tam@gmail.com",
       },
     });
 
     return prisma.workflow.create({
       data: {
-        name: 'test-workflow',
+        name: "test-workflow",
       },
     });
   }),
-
-
 });
 
 // export type definition of API
