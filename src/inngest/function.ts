@@ -13,7 +13,7 @@ export const executeAI = inngest.createFunction(
       prompt: 'write a short story on akhbar and birbal',
       experimental_telemetry: {
         isEnabled: true,
-        functionId: "joke_agent",
+        functionId: 'joke_agent',
         recordInputs: true,
         recordOutputs: true,
       },
@@ -33,5 +33,5 @@ export const processTask = inngest.createFunction(
     await step.sleep('pause', '15s');
 
     return { message: `Task ${event.data.email} complete`, result };
-  }
+  },
 );
